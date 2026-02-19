@@ -4,7 +4,7 @@ from pathlib import Path
 
 SOURCE_URL = "https://www.nic.lv/local.net"
 OUTPUT_DIR = Path(__file__).parent
-OUTPUT_FILE = OUTPUT_DIR / "ips.txt"
+OUTPUT_FILE = OUTPUT_DIR / "latvian-ips.txt"
 
 def fetch_and_clean():
     with urllib.request.urlopen(SOURCE_URL) as response:
