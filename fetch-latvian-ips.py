@@ -1,3 +1,4 @@
+import ipaddress
 import urllib.request
 import re
 from pathlib import Path
@@ -19,12 +20,12 @@ def fetch_and_clean():
             continue
         m = cidr_pattern.match(line)
         if m:
-            networks.append(m.group(1))
+            networks.append(ipaddress.ip_network(m.group(1)))
 
-    unique = list(set(networks))
+    collapsed = list(ipaddress.collapse_addresses(networks))
 
-    OUTPUT_FILE.write_text("\n".join(unique) + "\n", encoding="utf-8")
-    print(f"Saved {len(unique)} networks to {OUTPUT_FILE}")
+    OUTPUT_FILE.write_text("\n".join(str(n) for n in collapsed) + "\n", encoding="utf-8")
+    print(f"Saved {len(collapsed)} networks to {OUTPUT_FILE}")
 
 if __name__ == "__main__":
     fetch_and_clean()
