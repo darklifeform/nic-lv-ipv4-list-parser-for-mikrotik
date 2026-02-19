@@ -1,6 +1,14 @@
 # Latvian IPv4 List for MikroTik
 
-This repository fetches Latvia-local IPv4 networks from NIC.lv and prepares them for MikroTik address-list usage.
+This repository is a two-part workflow for MikroTik firewall address-lists:
+
+1. A server-side script fetches and cleans Latvian IPv4 networks from NIC.lv.
+2. A MikroTik script downloads that cleaned list and applies it to firewall address-list entries.
+
+## Two-part architecture
+
+- Part 1 (server): `fetch_ips.py` downloads `https://www.nic.lv/local.net`, filters valid IPv4 CIDR lines, deduplicates them, and writes `ips.txt`.
+- Part 2 (MikroTik): `latvian-ips.rsc` fetches hosted `ips.txt` and updates firewall address-list `latvian-ips`.
 
 ## What it does
 

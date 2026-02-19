@@ -1,7 +1,6 @@
 # Update Latvian IP address-list
-# Source: https://www.nic.lv/local.net (cleaned by fetch_ips.py)
 
-:local url "https://<your-server>/ips.txt"
+:local url "https://ip.netpro.lv/latvian-ips.txt"
 :local listName "latvian-ips"
 :local tmpFile "latvian-ips.txt"
 

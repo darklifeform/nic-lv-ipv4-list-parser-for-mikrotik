@@ -22,12 +22,7 @@ def fetch_and_clean():
             networks.append(m.group(1))
 
     # Deduplicate, preserve order
-    seen = set()
-    unique = []
-    for net in networks:
-        if net not in seen:
-            seen.add(net)
-            unique.append(net)
+    unique = list(dict.fromkeys(networks))
 
     OUTPUT_FILE.write_text("\n".join(unique) + "\n", encoding="utf-8")
     print(f"Saved {len(unique)} networks to {OUTPUT_FILE}")
